@@ -80,4 +80,13 @@ return [
         'verify_csrf_token' => App\Http\Middleware\VerifyCsrfToken::class,
     ],
 
+    /**
+     * Expiration in Second
+     */
+    'access_token_exp' => env('ACCESS_TOKEN_EXPIRATION', 5),
+
+    /**
+     * Expiration in Day
+     */
+    'refresh_token_exp' => env('REFRESH_TOKEN_EXPIRATION', 7),
 ];
