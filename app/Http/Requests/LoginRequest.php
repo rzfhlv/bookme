@@ -43,6 +43,6 @@ class LoginRequest extends FormRequest
         throw new HttpResponseException(response()->json([
             'ok' => false,
             'msg' => $validator->errors(),
-        ], Response::HTTP_UNPROCESSABLE_ENTITY));          
+        ], Response::HTTP_UNPROCESSABLE_ENTITY));
     }
 }
