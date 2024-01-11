@@ -20,16 +20,14 @@ class RegisterController extends Controller
     {
         try {
             $result = $this->registerService->register($request->all());
+
             return response()->json([
-                'ok' => true,
-                'msg' => 'Success',
-                'data' => $result,
+                "ok" => true,
+                "msg" => "Success",
+                "data" => $result,
             ]);
         } catch (\Throwable $th) {
-            return response()->json([
-                'ok' => false,
-                'msg' => $th->getMessage(),
-            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+            return $this->generateError($th);
         }
     }
 }

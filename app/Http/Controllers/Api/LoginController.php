@@ -7,6 +7,7 @@ use App\Http\Requests\LoginRequest;
 use App\Services\Auth\LoginService;
 use Illuminate\Http\Response;
 use Illuminate\Validation\ValidationException;
+use Throwable;
 
 class LoginController extends Controller
 {
@@ -21,20 +22,14 @@ class LoginController extends Controller
     {
         try {
             $result = $this->loginService->login($request->all());
+
             return response()->json([
-                'ok' => true,
-                'msg' => 'Success',
-                'data' => $result,
+                "ok" => true,
+                "msg" => "Success",
+                "data" => $result,
             ]);
-        } catch (\Throwable $th) {
-            $code = Response::HTTP_INTERNAL_SERVER_ERROR;
-            if ($th instanceof ValidationException) {
-                $code = Response::HTTP_UNAUTHORIZED;
-            }
-            return response()->json([
-                'ok' => false,
-                'msg' => $th->getMessage(),
-            ], $code);
+        } catch (Throwable $th) {
+            return $this->generateError($th);
         }
     }
 }

@@ -5,8 +5,32 @@ namespace App\Http\Controllers;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Http\Response;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Validation\ValidationException;
+use Throwable;
 
 class Controller extends BaseController
 {
-    use AuthorizesRequests, ValidatesRequests;
+    use AuthorizesRequests;
+    use ValidatesRequests;
+
+    protected function generateError(Throwable $th)
+    {
+        $statusCode = Response::HTTP_INTERNAL_SERVER_ERROR;
+        $msg = "Something went wrong";
+
+        if ($th instanceof ModelNotFoundException) {
+            $statusCode = Response::HTTP_NOT_FOUND;
+            $msg = "Data not found";
+        } elseif ($th instanceof ValidationException) {
+            $statusCode = Response::HTTP_UNAUTHORIZED;
+            $msg = "The provided credentials are incorrect";
+        }
+
+        return response()->json([
+            "ok" => false,
+            "msg" => $msg,
+        ], $statusCode);
+    }
 }
