@@ -18,7 +18,7 @@ class LoginService
     public function login(array $data)
     {
         $user = $this->userRepository->first(['email' => $data['email']]);
-        
+
         if (! $user || ! Hash::check($data['password'], $user->password)) {
             throw ValidationException::withMessages([
                 'email' => ['The provided credentials are incorrect.'],
@@ -30,8 +30,8 @@ class LoginService
             'access_token' => $user->createToken(
                 'access_token',
                 ['access-api'],
-                now()->addMinutes(config('sanctum.access_token_exp')
-            ))->plainTextToken,
+                now()->addMinutes(config('sanctum.access_token_exp'))
+            )->plainTextToken,
             'refresh_token' => $user->createToken(
                 'refresh_token',
                 ['access-token'],

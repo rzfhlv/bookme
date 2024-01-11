@@ -11,7 +11,11 @@ class RefreshController extends Controller
     public function index(Request $request)
     {
         try {
-            $token = $request->user()->createToken('access_token', ['access-api'], now()->addMinutes(config('sanctum.access_token_exp')))->plainTextToken;
+            $token = $request->user()->createToken(
+                'access_token',
+                ['access-api'],
+                now()->addMinutes(config('sanctum.access_token_exp'))
+            )->plainTextToken;
             return response()->json([
                 'ok' => true,
                 'msg' => 'Success',

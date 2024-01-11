@@ -10,7 +10,7 @@ class UserRepository
 
     public function __construct(User $user)
     {
-        $this->user = $user;    
+        $this->user = $user;
     }
 
     public function create(array $data)
