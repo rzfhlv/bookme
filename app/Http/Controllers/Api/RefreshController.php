@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Throwable;
 
 class RefreshController extends Controller
 {
@@ -16,18 +17,16 @@ class RefreshController extends Controller
                 ['access-api'],
                 now()->addMinutes(config('sanctum.access_token_exp'))
             )->plainTextToken;
+
             return response()->json([
-                'ok' => true,
-                'msg' => 'Success',
-                'data' => [
-                    'access_token' => $token,
+                "ok" => true,
+                "msg" => "Success",
+                "data" => [
+                    "access_token" => $token,
                 ]
             ], Response::HTTP_OK);
-        } catch (\Throwable $th) {
-            return response()->json([
-                'ok' => false,
-                'msg' => $th->getMessage(),
-            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        } catch (Throwable $th) {
+            return $this->generateError($th);
         }
     }
 }

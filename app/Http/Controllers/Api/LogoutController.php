@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Throwable;
 
 class LogoutController extends Controller
 {
@@ -12,15 +13,13 @@ class LogoutController extends Controller
     {
         try {
             $request->user()->tokens()->delete();
+
             return response()->json([
-                'ok' => true,
-                'msg' => 'Success',
+                "ok" => true,
+                "msg" => "Success",
             ], Response::HTTP_OK);
-        } catch (\Throwable $th) {
-            return response()->json([
-                'ok' => false,
-                'msg' => $th->getMessage(),
-            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        } catch (Throwable $th) {
+            return $this->generateError($th);
         }
     }
 }

@@ -3,7 +3,10 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Throwable;
+use Exception;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -23,8 +26,13 @@ class Handler extends ExceptionHandler
      */
     public function register(): void
     {
-        $this->reportable(function (Throwable $e) {
-            //
+        $this->renderable(function (Exception $e, Request $request) {
+            if ($e instanceof AccessDeniedHttpException) {
+                return response()->json([
+                    "ok" => false,
+                    "msg" => "Forbidden access",
+                ], Response::HTTP_FORBIDDEN);
+            }
         });
     }
 }

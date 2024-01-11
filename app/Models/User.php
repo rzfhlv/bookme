@@ -9,10 +9,13 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens;
+    use HasFactory;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -57,5 +60,10 @@ class User extends Authenticatable
         return Attribute::make(
             get: fn (mixed $value) => Carbon::parse($value)->format('d:m:Y H:i:s'),
         );
+    }
+
+    public function conselor(): HasOne
+    {
+        return $this->hasOne(Conselor::class);
     }
 }
