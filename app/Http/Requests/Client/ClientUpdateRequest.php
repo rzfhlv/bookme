@@ -1,20 +1,23 @@
 <?php
 
-namespace App\Http\Requests\Category;
+namespace App\Http\Requests\Client;
 
+use App\Models\Client;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Response;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class CategoryUpdateRequest extends FormRequest
+class ClientUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return true;
+        $client = Client::find($this->route('id'));
+
+        return empty($client) ? false : $client->user_id == $this->user()->id;
     }
 
     /**
@@ -26,7 +29,10 @@ class CategoryUpdateRequest extends FormRequest
     {
         return [
             'name' => 'sometimes|string',
-            'description' => 'sometimes|string',
+            'dob' => 'sometimes|date',
+            'interest.data' => 'sometimes|array',
+            'address' => 'sometimes|string',
+            'picture' => 'sometimes|string',
         ];
     }
 
