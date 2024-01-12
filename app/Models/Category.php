@@ -2,31 +2,19 @@
 
 namespace App\Models;
 
-use App\Casts\Json;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Conselor extends Model
+class Category extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'name',
         'description',
-        'dob',
-        'skill',
-        'picture',
-        'education',
-        'user_id',
-    ];
-
-    protected $casts = [
-        'skill' => Json::class,
-        'education' => Json::class,
     ];
 
     protected function createdAt(): Attribute
@@ -43,13 +31,8 @@ class Conselor extends Model
         );
     }
 
-    public function user(): BelongsTo
+    public function conselors(): BelongsToMany
     {
-        return $this->belongsTo(User::class);
-    }
-
-    public function categories(): BelongsToMany
-    {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsToMany(Conselor::class);
     }
 }

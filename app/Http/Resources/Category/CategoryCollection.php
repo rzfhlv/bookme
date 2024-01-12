@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Category;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class ConselorCollection extends ResourceCollection
+class CategoryCollection extends ResourceCollection
 {
     /**
      * Indicates if the resource's collection keys should be preserved.
@@ -13,7 +13,7 @@ class ConselorCollection extends ResourceCollection
      * @var bool
      */
     public $preserveKeys = true;
-
+    
     /**
      * Transform the resource collection into an array.
      *
@@ -25,7 +25,7 @@ class ConselorCollection extends ResourceCollection
             "ok" => true,
             "msg" => "Success",
             "data" => [
-                "conselors" => $this->collection,
+                "categories" => $this->collection,
             ],
             "meta" => [],
             "links" => [],

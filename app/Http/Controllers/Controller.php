@@ -8,6 +8,7 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Response;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Database\UniqueConstraintViolationException;
 use Throwable;
 
 class Controller extends BaseController
@@ -26,6 +27,9 @@ class Controller extends BaseController
         } elseif ($th instanceof ValidationException) {
             $statusCode = Response::HTTP_UNAUTHORIZED;
             $msg = "The provided credentials are incorrect";
+        } elseif ($th instanceof UniqueConstraintViolationException) {
+            $statusCode = Response::HTTP_CONFLICT;
+            $msg = "Duplicate entry";
         }
 
         return response()->json([

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Conselor;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Response;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class LoginRequest extends FormRequest
+class ConselorCreateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,8 +25,14 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => 'required|email',
-            'password' => 'required',
+            'name' => 'required|string',
+            'description' => 'required|string',
+            'dob' => 'required|date',
+            'skill.data' => 'required|array',
+            'picture' => 'required',
+            'education.bachelor' => 'required|nullable',
+            'education.master' => 'required|nullable',
+            'education.doctoral' => 'required|nullable'
         ];
     }
 

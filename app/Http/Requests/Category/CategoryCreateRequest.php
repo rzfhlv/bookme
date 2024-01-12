@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Category;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Response;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class ConselorCreateRequest extends FormRequest
+class CategoryCreateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,12 +27,6 @@ class ConselorCreateRequest extends FormRequest
         return [
             'name' => 'required|string',
             'description' => 'required|string',
-            'dob' => 'required|date',
-            'skill.data' => 'required|array',
-            'picture' => 'required',
-            'education.bachelor' => 'required|nullable',
-            'education.master' => 'required|nullable',
-            'education.doctoral' => 'required|nullable'
         ];
     }
 

@@ -1,23 +1,21 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Category;
 
-use App\Models\Conselor;
+use App\Models\Category;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Response;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class ConselorUpdateRequest extends FormRequest
+class CategoryUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        $conselor = Conselor::find($this->route('id'));
-
-        return empty($conselor) ? false : $conselor->user_id == $this->user()->id;
+        return true;
     }
 
     /**
@@ -30,13 +28,6 @@ class ConselorUpdateRequest extends FormRequest
         return [
             'name' => 'sometimes|string',
             'description' => 'sometimes|string',
-            'dob' => 'sometimes|date',
-            'skill.data' => 'sometimes|array',
-            'picture' => 'sometimes',
-            'education' => 'sometimes',
-            'education.bachelor' => 'present_with:education|nullable',
-            'education.master' => 'present_with:education|nullable',
-            'education.doctoral' => 'present_with:education|nullable'
         ];
     }
 
