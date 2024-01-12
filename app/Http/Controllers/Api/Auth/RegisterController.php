@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\Auth\RegisterRequest;
 use App\Services\Auth\RegisterService;
-use Illuminate\Http\Response;
 
 class RegisterController extends Controller
 {

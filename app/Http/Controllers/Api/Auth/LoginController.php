@@ -1,12 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\LoginRequest;
+use App\Http\Requests\Auth\LoginRequest;
 use App\Services\Auth\LoginService;
-use Illuminate\Http\Response;
-use Illuminate\Validation\ValidationException;
 use Throwable;
 
 class LoginController extends Controller

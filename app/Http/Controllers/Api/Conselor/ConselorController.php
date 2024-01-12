@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\Conselor;
 
 use App\Http\Controllers\Controller;
 use App\Services\Conselor\ConselorService;
-use App\Http\Requests\ConselorCreateRequest;
-use App\Http\Requests\ConselorUpdateRequest;
-use App\Http\Resources\ConselorCollection;
-use App\Http\Resources\ConselorDetailResource;
+use App\Http\Requests\Conselor\ConselorCreateRequest;
+use App\Http\Requests\Conselor\ConselorUpdateRequest;
+use App\Http\Resources\Conselor\ConselorCollection;
+use App\Http\Resources\Conselor\ConselorDetailResource;
 use Illuminate\Http\Request;
 use Throwable;
 

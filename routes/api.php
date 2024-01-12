@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\Api\ConselorController;
-use App\Http\Controllers\Api\LoginController;
-use App\Http\Controllers\Api\LogoutController;
-use App\Http\Controllers\Api\RefreshController;
-use App\Http\Controllers\Api\RegisterController;
+use App\Http\Controllers\Api\Conselor\ConselorController;
+use App\Http\Controllers\Api\Auth\LoginController;
+use App\Http\Controllers\Api\Auth\LogoutController;
+use App\Http\Controllers\Api\Auth\RefreshController;
+use App\Http\Controllers\Api\Auth\RegisterController;
+use App\Http\Controllers\Api\Category\CategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Route;
@@ -31,6 +32,16 @@ Route::middleware(['auth:sanctum', 'ability:access-api'])->group(function () {
 
     Route::prefix('/conselors')->group(function () {
         Route::controller(ConselorController::class)->group(function () {
+            Route::post('/', 'create');
+            Route::get('/', 'all');
+            Route::get('/{id}', 'get');
+            Route::put('/{id}', 'update');
+            Route::delete('/{id}', 'delete');
+        });
+    });
+
+    Route::prefix('/categories')->group(function () {
+        Route::controller(CategoryController::class)->group(function () {
             Route::post('/', 'create');
             Route::get('/', 'all');
             Route::get('/{id}', 'get');
