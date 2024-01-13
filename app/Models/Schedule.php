@@ -2,32 +2,23 @@
 
 namespace App\Models;
 
-use App\Casts\Json;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Conselor extends Model
+class Schedule extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'description',
-        'dob',
-        'skill',
-        'picture',
-        'education',
-        'user_id',
-    ];
-
-    protected $casts = [
-        'skill' => Json::class,
-        'education' => Json::class,
+        'conselor_id',
+        'day_of_week',
+        'start_time',
+        'end_time',
+        'start_date',
+        'end_date',
     ];
 
     protected function createdAt(): Attribute
@@ -44,18 +35,8 @@ class Conselor extends Model
         );
     }
 
-    public function user(): BelongsTo
+    public function conselor(): BelongsTo
     {
-        return $this->belongsTo(User::class);
-    }
-
-    public function categories(): BelongsToMany
-    {
-        return $this->belongsToMany(Category::class);
-    }
-
-    public function schedules(): HasMany
-    {
-        return $this->hasMany(Schedule::class);
+        return $this->belongsTo(Conselor::class);
     }
 }
