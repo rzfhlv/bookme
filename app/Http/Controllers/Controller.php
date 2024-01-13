@@ -37,4 +37,12 @@ class Controller extends BaseController
             "msg" => $msg,
         ], $statusCode);
     }
+
+    protected function responseBasic()
+    {
+        return response()->json([
+            "ok" => true,
+            "msg" => "Success",
+        ]);
+    }
 }

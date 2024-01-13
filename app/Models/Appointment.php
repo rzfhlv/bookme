@@ -2,32 +2,29 @@
 
 namespace App\Models;
 
-use App\Casts\Json;
+use App\Casts\AppointmentStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Conselor extends Model
+class Appointment extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'description',
-        'dob',
-        'skill',
-        'picture',
-        'education',
-        'user_id',
+        'conselor_id',
+        'client_id',
+        'schedule_id',
+        'date',
+        'start_time',
+        'end_time',
+        'status',
     ];
 
     protected $casts = [
-        'skill' => Json::class,
-        'education' => Json::class,
+        'status' => AppointmentStatus::class,
     ];
 
     protected function createdAt(): Attribute
@@ -44,23 +41,18 @@ class Conselor extends Model
         );
     }
 
-    public function user(): BelongsTo
+    public function conselor(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Conselor::class);
     }
 
-    public function categories(): BelongsToMany
+    public function client(): BelongsTo
     {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsTo(Client::class);
     }
 
-    public function schedules(): HasMany
+    public function schedule(): BelongsTo
     {
-        return $this->hasMany(Schedule::class);
-    }
-
-    public function appointments(): HasMany
-    {
-        return $this->hasMany(Appointment::class);
+        return $this->belongsTo(Schedule::class);
     }
 }

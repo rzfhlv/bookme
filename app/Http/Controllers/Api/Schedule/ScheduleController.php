@@ -71,10 +71,7 @@ class ScheduleController extends Controller
         try {
             $this->scheduleService->delete($id);
 
-            return response()->json([
-                "ok" => true,
-                "msg" => "Success",
-            ]);
+            return $this->responseBasic();
         } catch (Throwable $th) {
             return $this->generateError($th);
         }
