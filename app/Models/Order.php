@@ -2,30 +2,29 @@
 
 namespace App\Models;
 
-use App\Enums\AppointmentStatus;
+use App\Enums\OrderStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Appointment extends Model
+class Order extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'conselor_id',
         'client_id',
-        'schedule_id',
-        'date',
-        'start_time',
-        'end_time',
+        'appointment_id',
+        'appointment_fee',
+        'admin_fee',
+        'total_amount',
+        'order_date',
         'status',
     ];
 
     protected $casts = [
-        'status' => AppointmentStatus::class,
+        'status' => OrderStatus::class,
     ];
 
     protected function createdAt(): Attribute
@@ -42,23 +41,13 @@ class Appointment extends Model
         );
     }
 
-    public function conselor(): BelongsTo
-    {
-        return $this->belongsTo(Conselor::class);
-    }
-
     public function client(): BelongsTo
     {
         return $this->belongsTo(Client::class);
     }
 
-    public function schedule(): BelongsTo
+    public function appointment(): BelongsTo
     {
-        return $this->belongsTo(Schedule::class);
-    }
-
-    public function order(): HasOne
-    {
-        return $this->hasOne(Order::class);
+        return $this->belongsTo(Appointment::class);
     }
 }

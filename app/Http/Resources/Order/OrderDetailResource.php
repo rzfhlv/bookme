@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Resources\Appointment;
+namespace App\Http\Resources\Order;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class AppointmentDetailResource extends JsonResource
+class OrderDetailResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,7 +18,7 @@ class AppointmentDetailResource extends JsonResource
             "ok" => true,
             "msg" => "Success",
             "data" => [
-                "appointment" => parent::toArray($request),
+                "order" => parent::toArray($request),
             ],
         ];
     }

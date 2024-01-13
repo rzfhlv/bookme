@@ -1,25 +1,22 @@
 <?php
 
-namespace App\Http\Requests\Appointment;
+namespace App\Http\Requests\Order;
 
-use App\Enums\AppointmentStatus;
-use App\Models\Appointment;
+use App\Enums\OrderStatus;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Response;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Validation\Rule;
 
-class AppointmentUpdateRequest extends FormRequest
+class OrderUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        $appointment = Appointment::with('client')->find($this->route('id'));
-
-        return empty($appointment) ? false : $appointment->client->user_id == $this->user()->id;
+        return true;
     }
 
     /**
@@ -30,13 +27,13 @@ class AppointmentUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'conselor_id' => 'sometimes|integer',
             'client_id' => 'sometimes|integer',
-            'schedule_id' => 'sometimes|integer',
-            'date' => 'sometimes|date',
-            'start_time' => 'sometimes|string',
-            'end_time' => 'sometimes|string',
-            'status' => ['sometimes', Rule::enum(AppointmentStatus::class)],
+            'appointment_id' => 'sometimes|integer',
+            'appointment_fee' => 'sometimes|decimal:2',
+            'admin_fee' => 'sometimes|decimal:2',
+            'total_amount' => 'sometimes|decimal:2',
+            'order_date' => 'sometimes|date',
+            'status' => ['sometimes', Rule::enum(OrderStatus::class)],
         ];
     }
 

@@ -2,7 +2,7 @@
 
 namespace App\Services\Appointment;
 
-use App\Casts\AppointmentStatus;
+use App\Enums\AppointmentStatus;
 use App\Repositories\Appointment\AppointmentRepository;
 
 class AppointmentService

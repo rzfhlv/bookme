@@ -50,4 +50,9 @@ class Client extends Model
     {
         return $this->hasMany(Appointment::class);
     }
+
+    public function orders(): HasMany
+    {
+        return $this->hasMany(Order::class);
+    }
 }
