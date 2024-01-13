@@ -71,10 +71,7 @@ class CategoryController extends Controller
         try {
             $this->categoryService->delete($id);
 
-            return response()->json([
-                "ok" => true,
-                "msg" => "Success",
-            ]);
+            return $this->responseBasic();
         } catch (Throwable $th) {
             return $this->generateError($th);
         }

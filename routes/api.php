@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\Appointment\AppointmentController;
 use App\Http\Controllers\Api\Conselor\ConselorController;
 use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\Auth\LogoutController;
@@ -64,6 +65,16 @@ Route::middleware(['auth:sanctum', 'ability:access-api'])->group(function () {
 
     Route::prefix('/schedules')->group(function () {
         Route::controller(ScheduleController::class)->group(function () {
+            Route::post('/', 'create');
+            Route::get('/', 'all');
+            Route::get('/{id}', 'get');
+            Route::put('/{id}', 'update');
+            Route::delete('/{id}', 'delete');
+        });
+    });
+
+    Route::prefix('/appointments')->group(function () {
+        Route::controller(AppointmentController::class)->group(function () {
             Route::post('/', 'create');
             Route::get('/', 'all');
             Route::get('/{id}', 'get');

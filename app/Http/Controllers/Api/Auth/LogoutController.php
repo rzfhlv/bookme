@@ -14,10 +14,7 @@ class LogoutController extends Controller
         try {
             $request->user()->tokens()->delete();
 
-            return response()->json([
-                "ok" => true,
-                "msg" => "Success",
-            ], Response::HTTP_OK);
+            return $this->responseBasic();
         } catch (Throwable $th) {
             return $this->generateError($th);
         }

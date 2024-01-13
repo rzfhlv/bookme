@@ -72,10 +72,7 @@ class ConselorController extends Controller
         try {
             $this->conselorService->delete($id);
 
-            return response()->json([
-                "ok" => true,
-                "msg" => "Success",
-            ]);
+            return $this->responseBasic();
         } catch (Throwable $th) {
             return $this->generateError($th);
         }

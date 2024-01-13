@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Schedule extends Model
 {
@@ -38,5 +39,10 @@ class Schedule extends Model
     public function conselor(): BelongsTo
     {
         return $this->belongsTo(Conselor::class);
+    }
+
+    public function appointments(): HasMany
+    {
+        return $this->hasMany(Appointment::class);
     }
 }

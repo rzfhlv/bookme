@@ -72,10 +72,7 @@ class ClientController extends Controller
         try {
             $this->clientService->delete($id);
 
-            return response()->json([
-                "ok" => true,
-                "msg" => "Success",
-            ]);
+            return $this->responseBasic();
         } catch (Throwable $th) {
             return $this->generateError($th);
         }
