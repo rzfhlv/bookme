@@ -30,6 +30,9 @@ class Controller extends BaseController
         } elseif ($th instanceof UniqueConstraintViolationException) {
             $statusCode = Response::HTTP_CONFLICT;
             $msg = "Duplicate entry";
+        } elseif ($th->getCode() == 400) {
+            $statusCode = Response::HTTP_BAD_REQUEST;
+            $msg = $th->getMessage();
         }
 
         return response()->json([

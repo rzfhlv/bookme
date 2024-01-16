@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Requests\Order;
+namespace App\Http\Requests\Payment;
 
-use App\Enums\OrderStatus;
+use App\Enums\PaymentStatus;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Response;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Validation\Rule;
 
-class OrderUpdateRequest extends FormRequest
+class PaymentUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,15 +27,12 @@ class OrderUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'client_id' => 'sometimes|integer',
-            'appointment_id' => 'sometimes|integer',
-            'appointment_fee' => 'sometimes|decimal:2',
-            'admin_fee' => 'sometimes|decimal:2',
-            'total_amount' => 'sometimes|decimal:2',
-            'order_date' => 'sometimes|date',
-            'token_snap' => 'sometimes|string',
-            'redirect_url' => 'sometimes|string',
-            'status' => ['sometimes', Rule::enum(OrderStatus::class)],
+            'order_id' => 'sometimes|integer',
+            'date' => 'sometimes|date',
+            'amount_paid' => 'sometimes|decimal:2',
+            'request_payload' => 'sometimes|string',
+            'response_payload' => 'sometimes|string',
+            'status' => ['sometimes', Rule::enum(PaymentStatus::class)],
         ];
     }
 

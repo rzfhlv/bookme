@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->text('description');
             $table->date('dob');
+            $table->decimal('fee', $precision = 15, $scale = 2);
             $table->jsonb('skill');
             $table->string('picture');
             $table->jsonb('education');

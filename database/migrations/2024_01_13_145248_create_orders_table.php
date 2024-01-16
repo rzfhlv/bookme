@@ -19,6 +19,8 @@ return new class extends Migration
             $table->decimal('admin_fee', $precision = 15, $scale = 2);
             $table->decimal('total_amount', $precision = 15, $scale = 2);
             $table->date('order_date');
+            $table->string('token_snap')->nullable();
+            $table->string('redirect_url')->nullable();
             $table->enum('status', ['pending', 'success', 'cancelled', 'failed'])->default('pending');
             $table->timestamps();
 

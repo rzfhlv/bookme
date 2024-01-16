@@ -31,6 +31,7 @@ class ConselorUpdateRequest extends FormRequest
             'name' => 'sometimes|string',
             'description' => 'sometimes|string',
             'dob' => 'sometimes|date',
+            'fee' => 'sometimes|decimal:2',
             'skill.data' => 'sometimes|array',
             'picture' => 'sometimes',
             'education' => 'sometimes',

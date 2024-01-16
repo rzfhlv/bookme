@@ -19,6 +19,7 @@ class Conselor extends Model
         'name',
         'description',
         'dob',
+        'fee',
         'skill',
         'picture',
         'education',
