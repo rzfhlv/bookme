@@ -28,6 +28,7 @@ class ConselorCreateRequest extends FormRequest
             'name' => 'required|string',
             'description' => 'required|string',
             'dob' => 'required|date',
+            'fee' => 'required|decimal:2',
             'skill.data' => 'required|array',
             'picture' => 'required',
             'education.bachelor' => 'required|nullable',

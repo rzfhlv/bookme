@@ -9,6 +9,8 @@ use App\Http\Controllers\Api\Auth\RegisterController;
 use App\Http\Controllers\Api\Category\CategoryController;
 use App\Http\Controllers\Api\Client\ClientController;
 use App\Http\Controllers\Api\Order\OrderController;
+use App\Http\Controllers\Api\Payment\PaymentController;
+use App\Http\Controllers\Api\Payment\PaymentMidtransController;
 use App\Http\Controllers\Api\Schedule\ScheduleController;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -91,6 +93,22 @@ Route::middleware(['auth:sanctum', 'ability:access-api'])->group(function () {
             Route::get('/{id}', 'get');
             Route::put('/{id}', 'update');
             Route::delete('/{id}', 'delete');
+        });
+    });
+
+    Route::prefix('/payments')->group(function () {
+        Route::controller(PaymentController::class)->group(function () {
+            Route::post('/', 'create');
+            Route::get('/', 'all');
+            Route::get('/{id}', 'get');
+            Route::put('/{id}', 'update');
+            Route::delete('/{id}', 'delete');
+        });
+
+        Route::controller(PaymentMidtransController::class)->group(function () {
+            Route::prefix('/midtrans')->group(function () {
+                Route::post('/transaction', 'createTransaction');
+            });
         });
     });
 });
