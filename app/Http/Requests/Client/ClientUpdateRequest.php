@@ -32,7 +32,6 @@ class ClientUpdateRequest extends FormRequest
             'dob' => 'sometimes|date',
             'interest.data' => 'sometimes|array',
             'address' => 'sometimes|string',
-            'picture' => 'sometimes|string',
         ];
     }
 

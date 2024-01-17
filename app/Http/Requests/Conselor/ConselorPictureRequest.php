@@ -7,7 +7,7 @@ use Illuminate\Http\Response;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class ConselorCreateRequest extends FormRequest
+class ConselorPictureRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,14 +25,7 @@ class ConselorCreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string',
-            'description' => 'required|string',
-            'dob' => 'required|date',
-            'fee' => 'required|decimal:2',
-            'skill.data' => 'required|array',
-            'education.bachelor' => 'required|nullable',
-            'education.master' => 'required|nullable',
-            'education.doctoral' => 'required|nullable'
+            'picture' => 'required|image',
         ];
     }
 

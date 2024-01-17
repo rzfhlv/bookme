@@ -29,7 +29,6 @@ class ClientCreateRequest extends FormRequest
             'dob' => 'required|date',
             'interest.data' => 'required|array',
             'address' => 'required|string',
-            'picture' => 'required|string',
         ];
     }
 

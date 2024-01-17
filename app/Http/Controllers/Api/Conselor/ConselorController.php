@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Conselor;
 use App\Http\Controllers\Controller;
 use App\Services\Conselor\ConselorService;
 use App\Http\Requests\Conselor\ConselorCreateRequest;
+use App\Http\Requests\Conselor\ConselorPictureRequest;
 use App\Http\Requests\Conselor\ConselorUpdateRequest;
 use App\Http\Resources\Conselor\ConselorCollection;
 use App\Http\Resources\Conselor\ConselorDetailResource;
@@ -26,6 +27,17 @@ class ConselorController extends Controller
             $data = $request->validated();
             $data['user_id'] = $request->user()->id;
             $conselor = $this->conselorService->create($data);
+
+            return new ConselorDetailResource($conselor);
+        } catch (Throwable $th) {
+            return $this->generateError($th);
+        }
+    }
+
+    public function storePicture(ConselorPictureRequest $request, $id)
+    {
+        try {
+            $conselor = $this->conselorService->storePicture($request, $id);
 
             return new ConselorDetailResource($conselor);
         } catch (Throwable $th) {

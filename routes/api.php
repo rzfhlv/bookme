@@ -39,6 +39,7 @@ Route::middleware(['auth:sanctum', 'ability:access-api'])->group(function () {
     Route::prefix('/conselors')->group(function () {
         Route::controller(ConselorController::class)->group(function () {
             Route::post('/', 'create');
+            Route::post('/{id}/picture', 'storePicture');
             Route::get('/', 'all');
             Route::get('/{id}', 'get');
             Route::put('/{id}', 'update');
@@ -59,6 +60,7 @@ Route::middleware(['auth:sanctum', 'ability:access-api'])->group(function () {
     Route::prefix('/clients')->group(function () {
         Route::controller(ClientController::class)->group(function () {
             Route::post('/', 'create');
+            Route::post('/{id}/picture', 'storePicture');
             Route::get('/', 'all');
             Route::get('/{id}', 'get');
             Route::put('/{id}', 'update');

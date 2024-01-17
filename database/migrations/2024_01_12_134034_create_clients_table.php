@@ -17,7 +17,7 @@ return new class extends Migration
             $table->date('dob');
             $table->jsonb('interest');
             $table->text('address');
-            $table->string('picture');
+            $table->string('picture')->nullable();
             $table->unsignedBigInteger('user_id')->unique();
             $table->timestamps();
 

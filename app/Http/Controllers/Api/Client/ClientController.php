@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Client;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Client\ClientCreateRequest;
+use App\Http\Requests\Client\ClientPictureRequest;
 use App\Http\Requests\Client\ClientUpdateRequest;
 use App\Http\Resources\Client\ClientCollection;
 use App\Http\Resources\Client\ClientDetailResource;
@@ -26,6 +27,17 @@ class ClientController extends Controller
             $data = $request->validated();
             $data['user_id'] = $request->user()->id;
             $client = $this->clientService->create($data);
+
+            return new ClientDetailResource($client);
+        } catch (Throwable $th) {
+            return $this->generateError($th);
+        }
+    }
+
+    public function storePicture(ClientPictureRequest $request, $id)
+    {
+        try {
+            $client = $this->clientService->storePicture($request, $id);
 
             return new ClientDetailResource($client);
         } catch (Throwable $th) {
