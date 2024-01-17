@@ -18,7 +18,7 @@ return new class extends Migration
             $table->date('dob');
             $table->decimal('fee', $precision = 15, $scale = 2);
             $table->jsonb('skill');
-            $table->string('picture');
+            $table->string('picture')->nullable();
             $table->jsonb('education');
             $table->unsignedBigInteger('user_id')->unique();
             $table->timestamps();

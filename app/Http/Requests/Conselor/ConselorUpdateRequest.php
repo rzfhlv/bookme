@@ -33,7 +33,6 @@ class ConselorUpdateRequest extends FormRequest
             'dob' => 'sometimes|date',
             'fee' => 'sometimes|decimal:2',
             'skill.data' => 'sometimes|array',
-            'picture' => 'sometimes',
             'education' => 'sometimes',
             'education.bachelor' => 'present_with:education|nullable',
             'education.master' => 'present_with:education|nullable',
