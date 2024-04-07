@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\Payment\PaymentNotificationController;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,7 +16,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return response()->json([
+        'status' => 'ok',
+        'msg' => 'Welcome to the app!'
+    ]);
 });
 
 Route::post('/payments/midtrans/notification', [PaymentNotificationController::class, 'handleNotification']);
