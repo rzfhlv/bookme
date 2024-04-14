@@ -3,13 +3,15 @@
 namespace App\Repositories\Conselor;
 
 use App\Models\Conselor;
+use App\Repositories\Repository;
 
-class ConselorRepository
+class ConselorRepository extends Repository
 {
     protected $conselor;
 
     public function __construct(Conselor $conselor)
     {
+        parent::__construct();
         $this->conselor = $conselor;
     }
 
@@ -20,7 +22,7 @@ class ConselorRepository
 
     public function all()
     {
-        return $this->conselor::paginate(5);
+        return $this->conselor::paginate($this->getPagination());
     }
 
     public function get(int $id)

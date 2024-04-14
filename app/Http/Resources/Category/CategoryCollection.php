@@ -24,9 +24,7 @@ class CategoryCollection extends ResourceCollection
         return [
             "ok" => true,
             "msg" => "Success",
-            "data" => [
-                "categories" => $this->collection,
-            ],
+            "data" => $this->collection,
             "meta" => [],
             "links" => [],
         ];

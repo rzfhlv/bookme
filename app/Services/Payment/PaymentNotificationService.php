@@ -36,7 +36,7 @@ class PaymentNotificationService
             $data["order_id"] .
             $data["status_code"] .
             $data["gross_amount"] .
-            env("MIDTRANS_SERVER_KEY")
+            config('payment.midtrans.server.key')
         );
 
         if ($data["signature_key"] != $validSignature) {

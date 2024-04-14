@@ -24,9 +24,7 @@ class ClientCollection extends ResourceCollection
         return [
             "ok" => true,
             "msg" => "Success",
-            "data" => [
-                "clients" => $this->collection,
-            ],
+            "data" => $this->collection,
             "meta" => [],
             "links" => [],
         ];

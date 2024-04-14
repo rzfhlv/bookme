@@ -48,4 +48,9 @@ class Controller extends BaseController
             "msg" => "Success",
         ]);
     }
+
+    protected function getPagination()
+    {
+        return config('additional.pagination');
+    }
 }

@@ -3,13 +3,15 @@
 namespace App\Repositories\Appointment;
 
 use App\Models\Appointment;
+use App\Repositories\Repository;
 
-class AppointmentRepository
+class AppointmentRepository extends Repository
 {
     protected $appointment;
 
     public function __construct(Appointment $appointment)
     {
+        parent::__construct();
         $this->appointment = $appointment;
     }
 
@@ -20,7 +22,7 @@ class AppointmentRepository
 
     public function all()
     {
-        return $this->appointment::paginate(5);
+        return $this->appointment::paginate($this->getPagination());
     }
 
     public function get(int $id)

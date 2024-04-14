@@ -17,9 +17,7 @@ class ClientDetailResource extends JsonResource
         return [
             "ok" => true,
             "msg" => "Success",
-            "data" => [
-                "client" => parent::toArray($request),
-            ],
+            "data" => parent::toArray($request),
         ];
     }
 }

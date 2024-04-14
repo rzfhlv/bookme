@@ -24,9 +24,7 @@ class OrderCollection extends ResourceCollection
         return [
             "ok" => true,
             "msg" => "Success",
-            "data" => [
-                "orders" => $this->collection,
-            ],
+            "data" => $this->collection,
             "meta" => [],
             "links" => [],
         ];

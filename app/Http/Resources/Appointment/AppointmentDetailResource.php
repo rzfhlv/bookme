@@ -17,9 +17,7 @@ class AppointmentDetailResource extends JsonResource
         return [
             "ok" => true,
             "msg" => "Success",
-            "data" => [
-                "appointment" => parent::toArray($request),
-            ],
+            "data" => parent::toArray($request),
         ];
     }
 }

@@ -17,9 +17,7 @@ class ConselorDetailResource extends JsonResource
         return [
             "ok" => true,
             "msg" => "Success",
-            "data" => [
-                "conselor" => parent::toArray($request),
-            ],
+            "data" => parent::toArray($request),
         ];
     }
 }

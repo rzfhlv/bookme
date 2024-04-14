@@ -17,9 +17,7 @@ class OrderDetailResource extends JsonResource
         return [
             "ok" => true,
             "msg" => "Success",
-            "data" => [
-                "order" => parent::toArray($request),
-            ],
+            "data" => parent::toArray($request),
         ];
     }
 }

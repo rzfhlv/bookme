@@ -3,13 +3,15 @@
 namespace App\Repositories\Category;
 
 use App\Models\Category;
+use App\Repositories\Repository;
 
-class CategoryRepository
+class CategoryRepository extends Repository
 {
     protected $category;
 
     public function __construct(Category $category)
     {
+        parent::__construct();
         $this->category = $category;
     }
 
@@ -20,7 +22,7 @@ class CategoryRepository
 
     public function all()
     {
-        return $this->category::paginate(5);
+        return $this->category::paginate($this->getPagination());
     }
 
     public function get(int $id)

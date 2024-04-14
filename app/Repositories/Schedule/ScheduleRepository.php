@@ -3,13 +3,15 @@
 namespace App\Repositories\Schedule;
 
 use App\Models\Schedule;
+use App\Repositories\Repository;
 
-class ScheduleRepository
+class ScheduleRepository extends Repository
 {
     protected $schedule;
 
     public function __construct(Schedule $schedule)
     {
+        parent::__construct();
         $this->schedule = $schedule;
     }
 
@@ -20,7 +22,7 @@ class ScheduleRepository
 
     public function all()
     {
-        return $this->schedule::paginate(5);
+        return $this->schedule::paginate($this->getPagination());
     }
 
     public function get(int $id)

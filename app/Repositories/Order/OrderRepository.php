@@ -3,13 +3,15 @@
 namespace App\Repositories\Order;
 
 use App\Models\Order;
+use App\Repositories\Repository;
 
-class OrderRepository
+class OrderRepository extends Repository
 {
     protected $order;
 
     public function __construct(Order $order)
     {
+        parent::__construct();
         $this->order = $order;
     }
 
@@ -20,7 +22,7 @@ class OrderRepository
 
     public function all()
     {
-        return $this->order::paginate(5);
+        return $this->order::paginate($this->getPagination());
     }
 
     public function get(int $id)

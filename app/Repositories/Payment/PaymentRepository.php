@@ -3,13 +3,15 @@
 namespace App\Repositories\Payment;
 
 use App\Models\Payment;
+use App\Repositories\Repository;
 
-class PaymentRepository
+class PaymentRepository extends Repository
 {
     protected $payment;
 
     public function __construct(Payment $payment)
     {
+        parent::__construct();
         $this->payment = $payment;
     }
 
@@ -20,7 +22,7 @@ class PaymentRepository
 
     public function all()
     {
-        return $this->payment::paginate(5);
+        return $this->payment::paginate($this->getPagination());
     }
 
     public function get(int $id)

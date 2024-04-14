@@ -24,9 +24,7 @@ class ScheduleCollection extends ResourceCollection
         return [
             "ok" => true,
             "msg" => "Success",
-            "data" => [
-                "schedules" => $this->collection,
-            ],
+            "data" => $this->collection,
             "meta" => [],
             "links" => [],
         ];

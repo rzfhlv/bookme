@@ -24,9 +24,7 @@ class ConselorCollection extends ResourceCollection
         return [
             "ok" => true,
             "msg" => "Success",
-            "data" => [
-                "conselors" => $this->collection,
-            ],
+            "data" => $this->collection,
             "meta" => [],
             "links" => [],
         ];
