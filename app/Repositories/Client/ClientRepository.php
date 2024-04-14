@@ -3,13 +3,15 @@
 namespace App\Repositories\Client;
 
 use App\Models\Client;
+use App\Repositories\Repository;
 
-class ClientRepository
+class ClientRepository extends Repository
 {
     protected $client;
 
     public function __construct(Client $client)
     {
+        parent::__construct();
         $this->client = $client;
     }
 
@@ -20,7 +22,7 @@ class ClientRepository
 
     public function all()
     {
-        return $this->client::paginate(5);
+        return $this->client::paginate($this->getPagination());
     }
 
     public function get(int $id)

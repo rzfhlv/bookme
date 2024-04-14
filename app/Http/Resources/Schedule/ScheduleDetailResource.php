@@ -17,9 +17,7 @@ class ScheduleDetailResource extends JsonResource
         return [
             "ok" => true,
             "msg" => "Success",
-            "data" => [
-                "schedule" => parent::toArray($request),
-            ],
+            "data" => parent::toArray($request),
         ];
     }
 }

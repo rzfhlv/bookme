@@ -24,7 +24,7 @@ services:
       - .docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:delegated
     restart: always
     ports:
-      - "${WEB_DOCKER_PORT}:80"
+      - "${DOCKER_WEB_PORT}:80"
     networks:
       - bookme
 
@@ -40,7 +40,7 @@ services:
     volumes:
       - ~/data/db/postgres/bookme:/var/lib/postgresql/data
     ports:
-      - "${DB_DOCKER_PORT}:5432"
+      - "${DOCKER_DB_PORT}:5432"
     networks:
       - bookme
 

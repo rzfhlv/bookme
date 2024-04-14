@@ -15,7 +15,7 @@ class PaymentMidtransRepository
         Snap $snap,
     ) {
         $this->midtransConfig = $midtransConfig;
-        $this->midtransConfig::$serverKey = env('MIDTRANS_SERVER_KEY');
+        $this->midtransConfig::$serverKey = config('payment.midtrans.server.key');
         $this->midtransConfig::$isProduction = false;
         $this->midtransConfig::$isSanitized = true;
         $this->midtransConfig::$is3ds = true;

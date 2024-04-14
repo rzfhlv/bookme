@@ -17,9 +17,7 @@ class CategoryDetailResource extends JsonResource
         return [
             "ok" => true,
             "msg" => "Success",
-            "data" => [
-                "category" => parent::toArray($request),
-            ],
+            "data" => parent::toArray($request),
         ];
     }
 }

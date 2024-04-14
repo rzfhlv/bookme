@@ -17,9 +17,7 @@ class PaymentDetailResource extends JsonResource
         return [
             "ok" => true,
             "msg" => "Success",
-            "data" => [
-                "payment" => parent::toArray($request),
-            ],
+            "data" => parent::toArray($request),
         ];
     }
 }
