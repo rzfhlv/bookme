@@ -1,5 +1,8 @@
-up:
+run:
 	docker-compose up -d
 
-down:
+stop:
 	docker-compose down
+
+ps:
+	docker-compose ps
